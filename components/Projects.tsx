@@ -10,7 +10,6 @@ interface ProjectData {
   category: string;
   icon: React.ReactNode;
   description: string;
-  metrics: { label: string; value: string }[];
   tags: string[];
   color: string;
   glowColor: string;
@@ -31,83 +30,68 @@ export default function Projects() {
       title: "Text Simplification Using BART-base",
       category: "Deep Learning & NLP",
       icon: <Binary className="text-purple-650 dark:text-purple-400 w-5 h-5" />,
-      description: "Fine-tuned the pre-trained BART-base model on WikiLarge to simplify complex texts.",
-      metrics: [
-        { label: "SARI Metric", value: "Optimized" },
-        { label: "SacreBLEU", value: "Evaluated" },
-        { label: "FKGL Index", value: "Decreased" }
-      ],
-      tags: ["Python", "PyTorch", "Transformers", "BART", "HuggingFace"],
+      description: "Implemented an automated text simplification system by fine-tuning the BART model to enhance content readability.",
+      tags: ["Python", "PyTorch", "Transformers", "BART", "Hugging Face"],
       color: "from-purple-500/10 to-indigo-500/10 dark:from-purple-500/20 dark:to-indigo-500/20",
       glowColor: "shadow-[0_0_35px_rgba(168,85,247,0.15)] dark:shadow-[0_0_35px_rgba(168,85,247,0.2)]",
       borderColor: "border-purple-500/30",
       hoverTitle: "text-purple-650 dark:text-purple-300",
       btnHover: "bg-purple-500/5 dark:bg-purple-500/10 border-purple-500/20 dark:border-purple-500/30 text-purple-700 dark:text-purple-300 hover:bg-purple-600 dark:hover:bg-purple-500 hover:text-white dark:hover:text-white hover:border-purple-600 dark:hover:border-purple-500 hover:shadow-[0_0_15px_rgba(168,85,247,0.35)]",
       details: {
-        fullDescription: "This deep learning project focuses on translating linguistically complex English sentences into simplified versions while retaining their original semantic meaning. The pre-trained BART-base sequence-to-sequence model was fine-tuned on the WikiLarge corpus using HuggingFace Transformers. Custom generation parameters were implemented to manage the simplification level, serving as a solid reading aid.",
+        fullDescription: "An automated text simplification system aimed at enhancing content readability. The core of this project involved fine-tuning the pre-trained BART model on the WikiLarge dataset. By utilizing Python, Hugging Face Transformers, and PyTorch, I developed a robust sequence-to-sequence model specifically tuned for linguistic complexity reduction without losing the original semantic context.",
         features: [
-          "Sequence-to-sequence transformer model fine-tuning with HuggingFace.",
-          "WikiLarge dataset tokenization, alignment, and cleaning pipeline.",
-          "Quantitative evaluation using SARI, SacreBLEU, and Flesch-Kincaid Grade Level formulas.",
-          "Interactive text simplification generation script with parameter controls."
+          "Fine-tuning sequence-to-sequence BART model",
+          "Implementation using Python, Hugging Face Transformers, and PyTorch",
+          "Extensive training and evaluation on the WikiLarge dataset",
+          "Automated conversion of complex sentences"
         ],
-        github: "https://github.com/adlnzkra/text-simplification-bart",
+        github: "https://github.com/Sonofthanos/Text-Simplification-BART-base",
         publication: "https://repository.unsri.ac.id/193167/"
       }
     },
     {
-      title: "Age & Gender Detection CNN",
-      category: "Computer Vision",
-      icon: <Eye className="text-cyan-600 dark:text-cyan-400 w-5 h-5" />,
-      description: "Developed a CNN pipeline with OpenCV and a Tkinter GUI to predict age and gender in real-time.",
-      metrics: [
-        { label: "Gender Acc.", value: "90%" },
-        { label: "Age Acc.", value: "85%" },
-        { label: "Publication", value: "Journal 2024" }
-      ],
-      tags: ["CNN", "Keras", "OpenCV", "Tkinter", "Research Paper"],
-      color: "from-cyan-500/10 to-blue-500/10 dark:from-cyan-500/20 dark:to-blue-500/20",
-      glowColor: "shadow-[0_0_35px_rgba(6,182,212,0.15)] dark:shadow-[0_0_35px_rgba(6,182,212,0.2)]",
-      borderColor: "border-cyan-500/30",
-      hoverTitle: "text-cyan-600 dark:text-cyan-300",
-      btnHover: "bg-cyan-500/5 dark:bg-cyan-500/10 border-cyan-500/20 dark:border-cyan-500/30 text-cyan-700 dark:text-cyan-300 hover:bg-cyan-600 dark:hover:bg-cyan-500 hover:text-white dark:hover:text-white hover:border-cyan-600 dark:hover:border-cyan-500 hover:shadow-[0_0_15px_rgba(6,182,212,0.35)]",
-      details: {
-        fullDescription: "A real-time visual analytics solution powered by a multi-task Convolutional Neural Network (CNN). The system accesses active video streams via OpenCV, identifies faces, crops regions of interest, and simultaneously classifies the gender and predicts the age bracket of the subjects. The pipeline is tied to a customized, responsive desktop dashboard built in Tkinter.",
-        features: [
-          "Custom multi-output CNN architecture trained with Keras/TensorFlow.",
-          "OpenCV face tracking integration utilizing Haar Cascade Classifiers.",
-          "Tkinter GUI dashboard display for instant real-time camera overrides.",
-          "Published research detailing mathematical and structural validation."
-        ],
-        github: "https://github.com/adlnzkra/age-gender-cnn",
-        publication: "https://www.researchgate.net/publication/401507272_Aplikasi_Analisis_Wajah_Klasifikasi_Gender_dan_Prediksi_Usia_Menggunakan_Deep_Learning_pada_Dataset_Citra_Wajah_Manusia"
-      }
-    },
-    {
-      title: "Weather Prediction Modeling KNN",
+      title: "Weather Prediction Using XGBoost",
       category: "Machine Learning",
       icon: <CloudSun className="text-emerald-600 dark:text-emerald-400 w-5 h-5" />,
-      description: "Built local forecasting models for Palembang utilizing StandardScaler and SelectKBest.",
-      metrics: [
-        { label: "Algorithm", value: "KNN" },
-        { label: "Scaling", value: "Standard" },
-        { label: "Selection", value: "SelectKBest" }
-      ],
-      tags: ["Scikit-Learn", "Pandas", "Feature Engineering", "KNN", "Data Preprocessing"],
+      description: "Developed and optimized a multi-class classification model using XGBoost to predict 5 distinct weather conditions.",
+      tags: ["XGBoost", "Python", "Flask"],
       color: "from-emerald-500/10 to-teal-500/10 dark:from-emerald-500/20 dark:to-teal-500/20",
       glowColor: "shadow-[0_0_35px_rgba(16,185,129,0.15)] dark:shadow-[0_0_35px_rgba(16,185,129,0.2)]",
       borderColor: "border-emerald-500/30",
       hoverTitle: "text-emerald-600 dark:text-emerald-300",
       btnHover: "bg-emerald-500/5 dark:bg-emerald-500/10 border-emerald-500/20 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-600 dark:hover:bg-emerald-550 hover:text-white dark:hover:text-white hover:border-emerald-600 dark:hover:border-emerald-550 hover:shadow-[0_0_15px_rgba(16,185,129,0.35)]",
       details: {
-        fullDescription: "A regional data analysis project aiming to forecast local weather elements in Palembang, Indonesia. Historical environmental metrics were engineered, cleaned, and processed using standard pandas routines. We utilized StandardScaler for column normalization and selected primary variables with SelectKBest, resulting in an optimized KNN classifier.",
+        fullDescription: "A machine learning project focused on environmental data, utilizing the XGBoost classifier to build a highly accurate multi-class prediction model. The system evaluates meteorological parameters such as precipitation, temperature ranges, and wind speed to forecast 5 distinct weather conditions. To make the model accessible, it was fully deployed into a responsive web application built with the Flask framework.",
         features: [
-          "K-Nearest Neighbors model training and statistical performance testing.",
-          "Feature selection and ranking methods to determine optimal climate indicators.",
-          "Rigorous preprocessing for regional weather parameters (humidity, wind speed, rain).",
-          "Cross-validation setups for hyperparameter tuning and bias-variance balance."
+          "Multi-class classification optimization using XGBoost",
+          "Accurate prediction of 5 distinct weather conditions",
+          "Processing of precipitation, temperature, and wind speed",
+          "Full deployment into a responsive web application using Flask"
         ],
-        github: "https://github.com/adlnzkra/weather-prediction-knn"
+        github: "https://github.com/Sonofthanos/Weather-Prediction"
+      }
+    },
+    {
+      title: "Real-Time Age & Gender Detection",
+      category: "Computer Vision",
+      icon: <Eye className="text-cyan-600 dark:text-cyan-400 w-5 h-5" />,
+      description: "Utilized OpenCV DNN and pre-trained Caffe models to estimate age bracket and gender from images or real-time camera feeds.",
+      tags: ["OpenCV", "Deep Learning", "Tkinter", "Python"],
+      color: "from-cyan-500/10 to-blue-500/10 dark:from-cyan-500/20 dark:to-blue-500/20",
+      glowColor: "shadow-[0_0_35px_rgba(6,182,212,0.15)] dark:shadow-[0_0_35px_rgba(6,182,212,0.2)]",
+      borderColor: "border-cyan-500/30",
+      hoverTitle: "text-cyan-600 dark:text-cyan-300",
+      btnHover: "bg-cyan-500/5 dark:bg-cyan-500/10 border-cyan-500/20 dark:border-cyan-500/30 text-cyan-700 dark:text-cyan-300 hover:bg-cyan-600 dark:hover:bg-cyan-500 hover:text-white dark:hover:text-white hover:border-cyan-600 dark:hover:border-cyan-500 hover:shadow-[0_0_15px_rgba(6,182,212,0.35)]",
+      details: {
+        fullDescription: "An AI-based demographic estimation tool built with computer vision technologies. By leveraging OpenCV's Deep Neural Network (DNN) module and pre-trained Caffe models, the application accurately detects faces and estimates both age brackets and gender. The logic is wrapped in a clean, responsive graphical user interface (GUI) built with Tkinter, supporting both local image files and real-time webcam feeds.",
+        features: [
+          "Integration of OpenCV DNN with pre-trained Caffe models",
+          "Simultaneous face detection, age bracket, and gender classification",
+          "Clean and responsive Tkinter GUI",
+          "Toggling between local images and webcam capture"
+        ],
+        github: "https://github.com/Sonofthanos/Age-and-Gender-Detection",
+        publication: "https://jurnal.unived.ac.id/index.php/jmi/article/view/5998"
       }
     }
   ];
@@ -304,18 +288,7 @@ export default function Projects() {
                 </ul>
               </div>
 
-              {/* Metrics */}
-              <div className="mb-6 text-left">
-                <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 font-mono">Evaluation Metrics</h4>
-                <div className="grid grid-cols-3 gap-3">
-                  {selectedProject.metrics.map((m) => (
-                    <div key={m.label} className="bg-slate-900/5 dark:bg-white/5 rounded-2xl p-3 text-center border border-slate-200 dark:border-white/5">
-                      <p className="text-sm md:text-base font-bold text-slate-800 dark:text-white font-mono">{m.value}</p>
-                      <p className="text-xxs text-slate-500 dark:text-slate-400 uppercase mt-0.5 tracking-wider truncate font-mono">{m.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+
 
               {/* Technologies */}
               <div className="mb-8 text-left">

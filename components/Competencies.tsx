@@ -163,8 +163,7 @@ export default function Competencies() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto text-base sm:text-lg transition-colors duration-300"
         >
-          Key areas of expertise in artificial intelligence, layout design, and organizational leadership.
-        </motion.p>
+          Key areas of expertise in artificial intelligence, graphic design, and organizational leadership.        </motion.p>
       </div>
 
       {/* Orbit System Layout */}

@@ -3,13 +3,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Users2, Award, Target, Calendar, ChevronLeft, ChevronRight, X, Image as ImageIcon } from "lucide-react";
+import { Users2, Award, Target, Calendar, X, ExternalLink, Image as ImageIcon } from "lucide-react";
 import Magnetic from "@/components/Magnetic";
 
 export default function Experience() {
   const [activeIdx, setActiveIdx] = useState<number>(0);
   const [activeGalleryOrg, setActiveGalleryOrg] = useState<string | null>(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 
   const experiences = [
     {
@@ -18,7 +17,7 @@ export default function Experience() {
       details: "Led 12 departments and 200+ staff members. Spearheaded technology empowerment and digital advocacy platforms to enhance student involvement and digital readiness.",
       stats: [
         { label: "Staff Led", value: "200+" },
-        { label: "Departments", value: "12" }
+        { label: "Programs Held", value: "60+" }
       ],
       icon: <Users2 className="text-purple-650 dark:text-purple-400 w-5 h-5" />,
       logo: "/bem.svg",
@@ -32,7 +31,7 @@ export default function Experience() {
     {
       role: "Vice Project Officer",
       organization: "SRIFOTON (Sriwijaya Informatics Exhibition)",
-      details: "Coordinated 150 members for a national-scale IT seminar and exhibitions. Managed sponsor acquisitions (20+ sponsors) and secured 200+ national attendees.",
+      details: "Coordinated 150 members for a national-scale IT seminar and exhibitions. Managed partnership acquisitions (20+ partnerships) and secured 200+ national attendees.",
       stats: [
         { label: "Staff Managed", value: "150" },
         { label: "Attendees", value: "200+" },
@@ -112,7 +111,6 @@ export default function Experience() {
                   className="relative cursor-pointer select-none group/node"
                   onClick={() => {
                     setActiveIdx(idx);
-                    setCurrentImageIndex(0);
                   }}
                 >
                   {/* Glowing active node bullet on the line */}
@@ -163,7 +161,6 @@ export default function Experience() {
                   key={exp.orgKey}
                   onClick={() => {
                     setActiveIdx(idx);
-                    setCurrentImageIndex(0);
                   }}
                   className={`px-4 py-2.5 rounded-2xl text-xs font-bold border transition-all cursor-pointer whitespace-nowrap ${
                     isActive 
@@ -293,7 +290,6 @@ export default function Experience() {
                       <button
                         onClick={() => {
                           setActiveGalleryOrg(activeOrg.orgKey);
-                          setCurrentImageIndex(0);
                         }}
                         className={`group/gallery-btn flex items-center gap-1.5 px-4 py-2 text-[10px] sm:text-xs font-semibold text-white rounded-full transition-all cursor-pointer shadow-sm hover:scale-105 ${
                           activeIdx === 0 ? "bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-650 dark:to-indigo-650" :
@@ -301,8 +297,8 @@ export default function Experience() {
                           "bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-650 dark:to-teal-650"
                         }`}
                       >
-                        <ImageIcon size={12} className="group-hover/gallery-btn:scale-110 transition-transform" />
-                        <span>Activity Gallery</span>
+                        <Award size={12} className="group-hover/gallery-btn:scale-110 transition-transform" />
+                        <span>Certificate</span>
                       </button>
                     </Magnetic>
                   </div>
@@ -313,9 +309,7 @@ export default function Experience() {
           </AnimatePresence>
         </div>
 
-      </div>
-
-      {/* Activity Gallery Modal popup overlay */}
+      </div>      {/* Certificate Modal popup overlay */}
       <AnimatePresence>
         {activeGalleryOrg && currentOrg && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -354,8 +348,8 @@ export default function Experience() {
                     <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white leading-tight">
                       {currentOrg.organization}
                     </h3>
-                    <p className="text-xxs sm:text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
-                      Activity Gallery • 6 Photos
+                    <p className="text-xxs sm:text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5 font-mono">
+                      Official Certificate
                     </p>
                   </div>
                 </div>
@@ -366,139 +360,105 @@ export default function Experience() {
                 >
                   <X size={20} />
                 </button>
-              </div>
-
-              {/* Modal Main Slider */}
+              </div>              {/* Modal Main Slider / Layout */}
               <div className="flex-1 flex flex-col md:flex-row gap-6 items-stretch justify-between overflow-hidden min-h-0">
-                {/* Main Large Image Box */}
-                <div className="flex-1 relative aspect-video md:aspect-auto md:h-[400px] rounded-2xl overflow-hidden border border-slate-200/60 dark:border-white/10 bg-slate-950/40 flex items-center justify-center">
-                  
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentImageIndex}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.25 }}
-                      className="absolute inset-0 w-full h-full"
-                    >
-                      <img
-                        src={`/gallery/${activeGalleryOrg}/${currentImageIndex + 1}.jpg`}
-                        alt={`${currentOrg.organization} Activity ${currentImageIndex + 1}`}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.style.display = "none";
-                          const placeholder = e.currentTarget.nextElementSibling as HTMLElement;
-                          if (placeholder) placeholder.style.display = "flex";
-                        }}
-                      />
-                      
-                      {/* Interactive styled placeholder card */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-tr from-purple-950/10 via-indigo-950/10 to-slate-900/30" style={{ display: "none" }}>
-                        <div className="w-14 h-14 rounded-full bg-purple-500/5 border border-purple-500/10 flex items-center justify-center mb-4">
-                          <ImageIcon className="text-purple-500 dark:text-purple-400 w-7 h-7" />
-                        </div>
-                        <span className="text-base font-bold text-slate-800 dark:text-slate-200 mb-1">
-                          Activity Photo #{currentImageIndex + 1}
-                        </span>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed mb-4">
-                          Please upload your activity image inside the project&apos;s public folder at:
-                        </p>
-                        <code className="bg-slate-200 dark:bg-slate-900 px-3 py-1.5 rounded-lg text-purple-650 dark:text-purple-300 font-mono text-[10px] select-all max-w-[90%] break-all">
-                          public/gallery/{activeGalleryOrg}/{currentImageIndex + 1}.jpg
-                        </code>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-
-                  {/* Slider controls */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentImageIndex((prev) => (prev === 0 ? 5 : prev - 1));
-                    }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/60 hover:bg-slate-900/80 text-white backdrop-blur-sm transition-all cursor-pointer z-20 border border-white/5 hover:scale-105"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentImageIndex((prev) => (prev === 5 ? 0 : prev + 1));
-                    }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/60 hover:bg-slate-900/80 text-white backdrop-blur-sm transition-all cursor-pointer z-20 border border-white/5 hover:scale-105"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
-
-                  {/* Slide number badge */}
-                  <div className="absolute bottom-4 left-4 bg-slate-900/70 text-white backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-semibold font-mono border border-white/5 z-20 shadow-md">
-                    {currentImageIndex + 1} / 6
-                  </div>
-                </div>
-
-                {/* Desktop sidebar thumbnails */}
-                <div className="hidden md:flex flex-col w-[240px] shrink-0 overflow-y-auto pr-1">
-                  <h4 className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-3 uppercase tracking-wider font-mono">
-                    Activity Photos
-                  </h4>
-                  <div className="grid grid-cols-2 gap-2 text-left">
-                    {Array.from({ length: 6 }).map((_, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setCurrentImageIndex(idx)}
-                        className={`relative aspect-[4/3] rounded-xl overflow-hidden border transition-all cursor-pointer bg-slate-950/40 shrink-0 ${
-                          currentImageIndex === idx
-                            ? "border-purple-500 scale-95 shadow-[0_0_10px_rgba(168,85,247,0.3)]"
-                            : "border-slate-200/50 dark:border-white/5 hover:border-slate-400 dark:hover:border-white/20"
-                        }`}
-                      >
-                        <img
-                          src={`/gallery/${activeGalleryOrg}/${idx + 1}.jpg`}
-                          alt=""
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            e.currentTarget.style.display = "none";
-                            const fallbackThumb = e.currentTarget.nextElementSibling as HTMLElement;
-                            if (fallbackThumb) fallbackThumb.style.display = "flex";
-                          }}
-                        />
-                        <div className="absolute inset-0 flex flex-col items-center justify-center p-1 bg-gradient-to-tr from-purple-950/10 to-slate-900/30 text-[9px] font-bold text-slate-500 dark:text-slate-350 rounded-xl text-center border border-dashed border-white/5" style={{ display: "none" }}>
-                          <span>Photo #{idx + 1}</span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Mobile Thumbnail Row */}
-              <div className="flex md:hidden gap-2 overflow-x-auto pt-4 mt-2 border-t border-slate-200/60 dark:border-white/5 pb-2 scrollbar-thin scrollbar-thumb-purple-500/30">
-                {Array.from({ length: 6 }).map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentImageIndex(idx)}
-                    className={`relative w-16 h-12 rounded-lg overflow-hidden border transition-all cursor-pointer bg-slate-950/40 shrink-0 ${
-                      currentImageIndex === idx
-                        ? "border-purple-500 scale-95 shadow-[0_0_8px_rgba(168,85,247,0.3)]"
-                        : "border-slate-200/50 dark:border-white/5"
-                    }`}
-                  >
+                {/* Main Large Image Box (Left) */}
+                <div className="flex-1 relative aspect-video md:aspect-auto md:h-[400px] rounded-2xl overflow-hidden border border-slate-200/60 dark:border-white/10 bg-slate-950/40 flex items-center justify-center group/cert cursor-zoom-in">
+                  <a href={`/gallery/${activeGalleryOrg}/1.jpg`} target="_blank" rel="noopener noreferrer" className="absolute inset-0 w-full h-full">
                     <img
-                      src={`/gallery/${activeGalleryOrg}/${idx + 1}.jpg`}
-                      alt=""
-                      className="w-full h-full object-cover"
+                      src={`/gallery/${activeGalleryOrg}/1.jpg`}
+                      alt={`${currentOrg.organization} Certificate`}
+                      className="w-full h-full object-cover group-hover/cert:scale-[1.02] transition-transform duration-500"
                       onError={(e) => {
                         e.currentTarget.style.display = "none";
-                        const fallbackThumb = e.currentTarget.nextElementSibling as HTMLElement;
-                        if (fallbackThumb) fallbackThumb.style.display = "flex";
+                        const placeholder = e.currentTarget.nextElementSibling as HTMLElement;
+                        if (placeholder) placeholder.style.display = "flex";
                       }}
                     />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-tr from-purple-950/10 to-slate-900/30 text-[8px] font-bold text-slate-500 dark:text-slate-355 rounded-lg text-center border border-dashed border-white/5" style={{ display: "none" }}>
-                      <span>#{idx + 1}</span>
+                    
+                    {/* Interactive styled placeholder card */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-tr from-purple-950/10 via-indigo-950/10 to-slate-900/30" style={{ display: "none" }}>
+                      <div className="w-14 h-14 rounded-full bg-purple-500/5 border border-purple-500/10 flex items-center justify-center mb-4">
+                        <ImageIcon className="text-purple-500 dark:text-purple-400 w-7 h-7" />
+                      </div>
+                      <span className="text-base font-bold text-slate-800 dark:text-slate-200 mb-1">
+                        Certificate Not Found
+                      </span>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed mb-4">
+                        Please upload your certificate image inside the project&apos;s public folder at:
+                      </p>
+                      <code className="bg-slate-200 dark:bg-slate-900 px-3 py-1.5 rounded-lg text-purple-650 dark:text-purple-300 font-mono text-[10px] select-all max-w-[90%] break-all">
+                        public/gallery/{activeGalleryOrg}/1.jpg
+                      </code>
                     </div>
-                  </button>
-                ))}
+                    
+                    {/* Hover Overlay info */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/cert:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-semibold text-sm gap-2 backdrop-blur-[2px]">
+                      <ExternalLink size={16} />
+                      Open Full Resolution
+                    </div>
+                  </a>
+                </div>
+
+                {/* Sidebar (Right) */}
+                <div className="flex flex-col w-full md:w-[280px] shrink-0 overflow-y-auto pr-1 text-left justify-between">
+                  <div>
+                    <h4 className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-3 uppercase tracking-wider font-mono">
+                      Certificate Details
+                    </h4>
+                    
+                    <div className="bg-slate-900/5 dark:bg-white/5 border border-slate-200/50 dark:border-white/5 rounded-2xl p-4 mb-4 font-sans">
+                      <span className="text-xxs font-mono font-bold uppercase tracking-wider text-purple-650 dark:text-purple-400 block mb-1">
+                        Credential Role
+                      </span>
+                      <p className="text-sm font-bold text-slate-850 dark:text-white leading-snug">
+                        {currentOrg.role}
+                      </p>
+                    </div>
+
+                    <div className="bg-slate-900/5 dark:bg-white/5 border border-slate-200/50 dark:border-white/5 rounded-2xl p-4 mb-4 font-sans">
+                      <span className="text-xxs font-mono font-bold uppercase tracking-wider text-purple-650 dark:text-purple-400 block mb-1">
+                        Tenure Period
+                      </span>
+                      <p className="text-sm font-semibold text-slate-800 dark:text-white leading-none font-mono">
+                        Year {currentOrg.period}
+                      </p>
+                    </div>
+
+                    {/* Stats details */}
+                    <div className="grid grid-cols-2 gap-2 mb-4 font-sans">
+                      {currentOrg.stats.map((stat, idx) => (
+                        <div
+                          key={stat.label}
+                          className={`flex flex-col bg-slate-900/5 dark:bg-white/5 border border-slate-200/50 dark:border-white/5 rounded-2xl p-3 ${
+                            currentOrg.stats.length % 2 !== 0 && idx === currentOrg.stats.length - 1
+                              ? "col-span-2 text-center items-center"
+                              : ""
+                          }`}
+                        >
+                          <span className="text-sm font-mono leading-none text-slate-800 dark:text-white font-bold">
+                            {stat.value}
+                          </span>
+                          <span className="text-[9px] text-slate-505 dark:text-slate-400 uppercase tracking-wider font-bold mt-1.5 truncate">
+                            {stat.label}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="pt-4 border-t border-slate-200/50 dark:border-white/5 flex flex-col gap-2 font-sans">
+                    <a
+                      href={`/gallery/${activeGalleryOrg}/1.jpg`}
+                      download={`${currentOrg.organization}_Certificate.jpg`}
+                      className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl font-bold text-xs bg-purple-600 hover:bg-purple-700 dark:bg-purple-650 dark:hover:bg-purple-600 text-white shadow-md transition-all hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(168,85,247,0.35)] cursor-pointer text-center"
+                    >
+                      <Award size={14} />
+                      Download Certificate
+                    </a>
+                  </div>
+                </div>
               </div>
 
             </motion.div>
